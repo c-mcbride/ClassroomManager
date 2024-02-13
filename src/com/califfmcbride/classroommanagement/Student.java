@@ -7,6 +7,7 @@ public class Student {
     public Student(String name, int studentId){
         this.name = name;
         this.studentId = studentId;
+        
     }
 
     //Getters
