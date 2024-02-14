@@ -27,5 +27,22 @@ public class Course {
     public String getDescription(){ return description; }
     public void setDescription(String description){ this.description = description; }
     public Teacher getTeacher(){ return teacher; }
+    public void setTeacher(Teacher  teacher) { this.teacher = teacher; }
+    public List<Student> getStudents(){ return students; }
+    public List<Assignment> getAssignments(){ return assignments; }
+
+    //Methods
+    public void addStudent(Student student){
+        this.students.add(student);
+    }
+
+    public void removeStudents(Student student){
+        this.students.remove(student);
+    }
+
+    public void addAssignment(Assignment assignment){
+        this.assignments.add(assignment);
+    }
+    
 
 }
