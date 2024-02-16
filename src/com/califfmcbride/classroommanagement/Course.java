@@ -36,13 +36,16 @@ public class Course {
         this.students.add(student);
     }
 
-    public void removeStudents(Student student){
+    public void removeStudent(Student student){
         this.students.remove(student);
     }
 
     public void addAssignment(Assignment assignment){
         this.assignments.add(assignment);
     }
-    
 
+    //Add a method to add this course to the teachers list
+    public void addClassToTeacher(Course course){
+        teacher.addCourse(course);
+    }
 }

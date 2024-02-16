@@ -1,5 +1,6 @@
 package com.califfmcbride.classroommanagement;
 import java.util.List;
+import java.util.ArrayList;
 
 public class Teacher {
     private int teacherId;
@@ -11,6 +12,7 @@ public class Teacher {
         this.teacherId = teacherId;
         this.name = name;
         this.email = email;
+        this.courses = new ArrayList<>(); //Holds all of the teachers courses
     }
 
     //Getters and Setters
@@ -29,5 +31,14 @@ public class Teacher {
         this.courses.remove(course);
     }
 
-    
+    //Add assignment to a course by courseID
+    public void addAssignment(String courseId, Assignment assignment){
+        for (Course course: this.courses){
+            if(course.getCourseId().equals(courseId)){
+                course.addAssignment(assignment);
+                return;
+            }
+        }
+        System.out.println("Course with ID " + courseId + " not found.");
+    }
 }
