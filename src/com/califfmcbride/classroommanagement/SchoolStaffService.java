@@ -2,12 +2,23 @@ package com.califfmcbride.classroommanagement;
 import java.util.HashMap;
 import java.util.Map;
 
+//Singleton class to hold the school staff...call it with:
+//SchoolStaffService staffService = SchoolStaffService.getInstance();
 public class SchoolStaffService {
+    private static SchoolStaffService instance;
     private Map<Integer, Teacher> teachers;
 
     //Use hashmap to store teacher ID as key and name as value
-    public SchoolStaffService(){
+    private SchoolStaffService(){
         this.teachers = new HashMap<>();
+    }
+
+    public static SchoolStaffService getInstance(){
+        if(instance == null){
+            instance = new SchoolStaffService();
+        }
+
+        return instance;
     }
 
     public void addTeacher(Teacher teacher){
