@@ -81,7 +81,7 @@ public class App {
                             admin.addCourseToTeacher(selectedTeacher, course);
                         }
                         else{
-                            System.out.println("Teacher no found");
+                            System.out.println("Teacher not found");
                         }
 
                     case 0:
