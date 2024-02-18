@@ -21,9 +21,21 @@ public class App {
               System.out.println("Please enter admin name: ");
               String adminName = scanner.nextLine();
 
-              System.out.println("Enter adminId: ");
-              int adminId = scanner.nextInt();
-              scanner.nextLine();
+              boolean validInput = false;
+              int adminId = -1;
+
+              while(!validInput){
+                System.out.print("Enter admin Id: ");
+                if(scanner.hasNextInt()){
+                    adminId = scanner.nextInt();
+                    scanner.nextLine();
+                    validInput = true;
+                }
+                else{
+                    System.out.println("Please enter a non-demical number for teacher input");
+                    scanner.nextLine();
+                }
+              }
 
               //Construct admin object
               Admin admin = new Admin(adminName, adminId);
@@ -44,10 +56,22 @@ public class App {
                 switch(adminMenuChoice){
                     case 1:
                         System.out.println("Add a teacher");
+                        validInput = false;
+                        int teacherId = -1;
 
-                        System.out.print("Enter teacher Id: ");
-                        int teacherId = scanner.nextInt();
-                        scanner.nextLine();
+                        //We need to make sure the user enters a number for teacher id
+                        while(!validInput){
+                            System.out.print("Enter teacher Id: ");
+                            if(scanner.hasNextInt()){
+                                teacherId = scanner.nextInt();
+                                scanner.nextLine();
+                                validInput = true;
+                            }
+                            else{
+                                System.out.println("Please enter a non-demical number for teacher input");
+                                scanner.nextLine();
+                            }
+                        }
 
                         System.out.print("Enter the teachers name: ");
                         String teacherName = scanner.nextLine();
