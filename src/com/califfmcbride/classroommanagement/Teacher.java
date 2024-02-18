@@ -32,9 +32,9 @@ public class Teacher {
     }
 
     //Add assignment to a course by courseID
-    public void addAssignment(String courseId, Assignment assignment){
+    public void addAssignment(int courseId, Assignment assignment){
         for (Course course: this.courses){
-            if(course.getCourseId().equals(courseId)){
+            if(course.getCourseId() == courseId){
                 course.addAssignment(assignment);
                 return;
             }

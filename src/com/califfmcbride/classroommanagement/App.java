@@ -7,6 +7,7 @@ public class App {
     public static void main(String[] args) throws Exception {
         System.out.println("Welcome to ClassroomManager - Please Select and Option");
         System.out.println("1 - Create an admin ");
+        System.out.println("2 - Teacher Log In");
         System.out.println("0 - Exit");
 
         Scanner scanner = new Scanner(System.in);
@@ -14,6 +15,7 @@ public class App {
         scanner.nextLine(); //Consume the remaining newline
 
         switch(mainChoice){
+            //Admin case
             case 1:
               System.out.println("Please enter admin name: ");
               String adminName = scanner.nextLine();
@@ -25,12 +27,14 @@ public class App {
               //Construct admin object
               Admin admin = new Admin(adminName, adminId);
               boolean adminMenuActive = true;
+              System.out.println("-------------------------------------");
+              System.out.println("\n");
 
               while(adminMenuActive){
                 System.out.println("Welcome " + adminName + " what would you like to do?");
                 System.out.println("1 - Add a teacher");
                 System.out.println("2 - Add a course");
-                System.out.println("3 - Exit");
+                System.out.println("0 - Exit");
 
                 int adminMenuChoice = scanner.nextInt();
                 scanner.nextLine();
@@ -53,9 +57,34 @@ public class App {
                         admin.addTeacher(teacher);
                         break;
                     case 2:
+                        System.out.println("Create a course");
+                        System.out.println("Please enter course ID");
+                        int courseId= scanner.nextInt();
+                        scanner.nextLine();
+
+                        System.out.println("Enter the course name");
+                        String courseName = scanner.nextLine();
+
+                        System.out.println("Enter course description");
+                        String courseDescription = scanner.nextLine();
+
+                        //Find the teacher from the list and enter it
+                        Course course = new Course(courseId, courseName, courseDescription, null);
                         admin.printTeacherList();
-                        break;
-                    case 3:
+                        System.out.println("Select a teacher to assign (enter teacher ID): ");
+                        int selectedTeacherId = scanner.nextInt();
+                        scanner.nextLine();
+
+                        //Find the selected teacher
+                        Teacher selectedTeacher = admin.findTeacherById(selectedTeacherId);
+                        if(selectedTeacher != null){
+                            admin.addCourseToTeacher(selectedTeacher, course);
+                        }
+                        else{
+                            System.out.println("Teacher no found");
+                        }
+
+                    case 0:
                         adminMenuActive = false;
                         break;
                 }

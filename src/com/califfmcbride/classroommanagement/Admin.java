@@ -43,4 +43,14 @@ public class Admin {
         }
     }
 
+    public Teacher findTeacherById(int teacherId){
+        for(Teacher teacher : teachers){
+            if(teacher.getTeacherId() == teacherId){
+                return teacher;
+            }
+        }
+
+        return null;
+    }
+
 }

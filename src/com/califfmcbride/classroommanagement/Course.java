@@ -3,14 +3,14 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class Course {
-    private String courseId;
+    private int courseId;
     private String name;
     private String description;
     private Teacher teacher;
     private List<Student> students; //A list to hold all enrolled Students
     private List<Assignment> assignments; //A list to hold all assignments for the course
 
-    public Course(String courseId, String name, String description, Teacher teacher){
+    public Course(int courseId, String name, String description, Teacher teacher){
         this.courseId = courseId;
         this.name = name;
         this.description = description;
@@ -20,8 +20,8 @@ public class Course {
     }
 
     //Getters and setters
-    public String getCourseId(){return courseId;}
-    public void setCourseId(String courseId){ this.courseId = courseId; }
+    public int getCourseId(){return courseId;}
+    public void setCourseId(int courseId){ this.courseId = courseId; }
     public String getName(){ return name; }
     public void setName(String name){ this.name = name; }
     public String getDescription(){ return description; }
@@ -42,10 +42,5 @@ public class Course {
 
     public void addAssignment(Assignment assignment){
         this.assignments.add(assignment);
-    }
-
-    //Add a method to add this course to the teachers list
-    public void addClassToTeacher(Course course){
-        teacher.addCourse(course);
     }
 }
