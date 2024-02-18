@@ -43,7 +43,19 @@ public class SchoolStaffService {
         for (Teacher teacher : teachers.values()) {
             // Display teacher information
             System.out.println("Teacher ID: " + teacher.getTeacherId() + ", Name: " + teacher.getName());
-            // Include additional details as required
+            System.out.println("-------------------------------------");
+        }
+    }
+
+    //We need a method to return teacher objects using the id as key
+    public Teacher findTeacherById(int teacherId){
+        if(teachers.containsKey(teacherId)){
+            //Get the specific teacher object that matches the key if it exisists and return it
+            Teacher teacher = teachers.get(teacherId);
+            return teacher;
+        }
+        else{
+            return null;
         }
     }
 }
