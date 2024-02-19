@@ -11,6 +11,7 @@ public class SchoolStaffService {
     //Use hashmap to store teacher ID as key and name as value
     private SchoolStaffService(){
         this.teachers = new HashMap<>();
+        this.admins = new HashMap<>();
     }
 
     public static SchoolStaffService getInstance(){

@@ -4,12 +4,14 @@ import java.util.ArrayList;
 public class Student {
     private String name;
     private int studentId;
+    private String studentEmail;
     private List<Course> courses; ///Every student will be enrolled in courses
 
     //Construct the student
-    public Student(String name, int studentId){
+    public Student(String name, int studentId, String studentEmail){
         this.name = name;
         this.studentId = studentId;
+        this.studentEmail = studentEmail;
         this.courses = new ArrayList<>();
     }
 
@@ -18,6 +20,8 @@ public class Student {
     public void setName(String name){ this.name = name; }
     public int getStudentId(){ return studentId; }
     public void setStudentId(int studentId){ this.studentId = studentId; }
+    public String getStudentEmail(){ return studentEmail; }
+    public void setStudentEmail(String studentEmail) { this.studentEmail = studentEmail; }
 
     //Methods
     //Add a course

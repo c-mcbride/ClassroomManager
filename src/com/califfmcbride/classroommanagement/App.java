@@ -14,6 +14,7 @@ public class App {
         int mainChoice = scanner.nextInt();
         scanner.nextLine(); //Consume the remaining newline
         SchoolStaffService staffService = SchoolStaffService.getInstance();
+        StudentDirectory studentDirectory = StudentDirectory.getInstance();
         System.out.println("-------------------------------------");
 
         switch(mainChoice){
@@ -51,7 +52,7 @@ public class App {
                 System.out.println("Welcome " + adminName + " what would you like to do?");
                 System.out.println("1 - Add a teacher");
                 System.out.println("2 - Add a course");
-                System.out.println("3 - Add a student")
+                System.out.println("3 - Add a student");
                 System.out.println("0 - Exit");
 
                 int adminMenuChoice = scanner.nextInt();
@@ -119,6 +120,32 @@ public class App {
                             System.out.println("Teacher not found");
                         }
 
+                    case 3:
+                        System.out.println("Add a student");
+                        validInput = false;
+                        int studentId = -1;
+
+                        while(!validInput){
+                            System.out.print("Enter student Id");
+                            if(scanner.hasNextInt()){
+                                studentId = scanner.nextInt();
+                                scanner.nextLine();
+                                validInput = false;
+                            }
+                            else{
+                                System.out.println("Please enter a non-decimal number for student Id");
+                                scanner.nextLine();
+                            }
+                        }
+
+                        System.out.print("Enter the students name: ");
+                        String studentName = scanner.nextLine();
+
+                        System.out.print("Enter the students email: ");
+                        String studentEmail = scanner.nextLine();
+
+                        Student student = new Student(studentName, studentId, studentEmail);
+                        studentDirectory.addStudent(student);
                     case 0:
                         adminMenuActive = false;
                         break;
