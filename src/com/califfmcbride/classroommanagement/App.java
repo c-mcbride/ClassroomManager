@@ -13,6 +13,7 @@ public class App {
         Scanner scanner = new Scanner(System.in);
         int mainChoice = scanner.nextInt();
         scanner.nextLine(); //Consume the remaining newline
+        SchoolStaffService staffService = SchoolStaffService.getInstance();
         System.out.println("-------------------------------------");
 
         switch(mainChoice){
@@ -32,13 +33,17 @@ public class App {
                     validInput = true;
                 }
                 else{
-                    System.out.println("Please enter a non-demical number for teacher input");
+                    System.out.println("Please enter a non-demical number for adminId input");
                     scanner.nextLine();
                 }
               }
 
               //Construct admin object
               Admin admin = new Admin(adminName, adminId);
+
+              //Add the admin to the hashmap
+              staffService.addAdmin(admin);
+
               boolean adminMenuActive = true;
               System.out.println("-------------------------------------");
 
@@ -46,13 +51,13 @@ public class App {
                 System.out.println("Welcome " + adminName + " what would you like to do?");
                 System.out.println("1 - Add a teacher");
                 System.out.println("2 - Add a course");
+                System.out.println("3 - Add a student")
                 System.out.println("0 - Exit");
 
                 int adminMenuChoice = scanner.nextInt();
                 scanner.nextLine();
                 System.out.println("-------------------------------------");
 
-                SchoolStaffService staffService = SchoolStaffService.getInstance();
                 switch(adminMenuChoice){
                     case 1:
                         System.out.println("Add a teacher");

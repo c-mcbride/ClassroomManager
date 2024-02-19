@@ -1,12 +1,12 @@
 package com.califfmcbride.classroommanagement;
 import java.util.HashMap;
 import java.util.Map;
-
 //Singleton class to hold the school staff...call it with:
 //SchoolStaffService staffService = SchoolStaffService.getInstance();
 public class SchoolStaffService {
     private static SchoolStaffService instance;
     private Map<Integer, Teacher> teachers;
+    private Map<Integer, Admin> admins;
 
     //Use hashmap to store teacher ID as key and name as value
     private SchoolStaffService(){
@@ -56,6 +56,33 @@ public class SchoolStaffService {
         }
         else{
             return null;
+        }
+    }
+
+    //Method to add admin to the admin hashmap
+    public void addAdmin(Admin admin){
+        if(admin != null && !admins.containsKey(admin.getAdminId())){
+            admins.put(admin.getAdminId(), admin);
+        }
+        else{
+            System.out.println("Admin is already in the data base");
+        }
+    }
+
+    public void removeAdmin(int adminId){
+        if(admins.containsKey(adminId)){
+            admins.remove(adminId);
+        }
+        else{
+            System.out.println("Admin not in database");
+        }
+    }
+
+    public void listAllAdmin() {
+        for (Admin admin : admins.values()) {
+            // Display teacher information
+            System.out.println("Admin ID: " + admin.getAdminId() + ", Name: " + admin.getName());
+            System.out.println("-------------------------------------");
         }
     }
 }
