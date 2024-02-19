@@ -53,6 +53,7 @@ public class App {
                 System.out.println("1 - Add a teacher");
                 System.out.println("2 - Add a course");
                 System.out.println("3 - Add a student");
+                System.out.println("4 - Add a student to a course")
                 System.out.println("0 - Exit");
 
                 int adminMenuChoice = scanner.nextInt();
@@ -146,6 +147,23 @@ public class App {
 
                         Student student = new Student(studentName, studentId, studentEmail);
                         studentDirectory.addStudent(student);
+
+                    case 4:
+                        System.out.println("Add a student to course");
+                        studentDirectory.listAllStudents();
+                        System.out.println("Select a student to assign (enter student ID): ");
+                        studentId = scanner.nextInt();
+                        scanner.nextLine();
+
+                        //Find the selected student
+                        Student selectedStudent = studentDirectory.getStudentById(studentId);
+
+                        //Find the course...TODO add course service to maintain a list of all the courses avalible for the school
+
+
+
+
+
                     case 0:
                         adminMenuActive = false;
                         break;
