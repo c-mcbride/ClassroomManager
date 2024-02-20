@@ -13,8 +13,12 @@ public class App {
         Scanner scanner = new Scanner(System.in);
         int mainChoice = scanner.nextInt();
         scanner.nextLine(); //Consume the remaining newline
+
+        //Get the instance of all the singletons
         SchoolStaffService staffService = SchoolStaffService.getInstance();
         StudentDirectory studentDirectory = StudentDirectory.getInstance();
+        CourseService courseService = CourseService.getInstance();
+
         System.out.println("-------------------------------------");
 
         switch(mainChoice){
@@ -53,7 +57,8 @@ public class App {
                 System.out.println("1 - Add a teacher");
                 System.out.println("2 - Add a course");
                 System.out.println("3 - Add a student");
-                System.out.println("4 - Add a student to a course")
+                System.out.println("4 - Add a student to a course");
+                System.out.println("5 - View Students Enrolled in Course");
                 System.out.println("0 - Exit");
 
                 int adminMenuChoice = scanner.nextInt();
@@ -104,8 +109,6 @@ public class App {
                         String courseDescription = scanner.nextLine();
                         System.out.println("-------------------------------------");
 
-                        //Find the teacher from the list and enter it
-                        Course course = new Course(courseId, courseName, courseDescription, null);
                         staffService.listAllTeachers();
                         System.out.println("Select a teacher to assign (enter teacher ID): ");
                         int selectedTeacherId = scanner.nextInt();
@@ -114,13 +117,19 @@ public class App {
                         //Find the selected teacher
                         Teacher selectedTeacher = staffService.findTeacherById(selectedTeacherId);
 
+                        //Create course object and add the teacher to it
+                        Course course = new Course(courseId, courseName, courseDescription, selectedTeacher);
+                        //Add course to CourseService
+                        courseService.addCourse(course);
+
                         if(selectedTeacher != null){
                             admin.addCourseToTeacher(selectedTeacher, course);
                         }
                         else{
                             System.out.println("Teacher not found");
                         }
-
+                        System.out.println("-------------------------------------");
+                        break;
                     case 3:
                         System.out.println("Add a student");
                         validInput = false;
@@ -131,7 +140,7 @@ public class App {
                             if(scanner.hasNextInt()){
                                 studentId = scanner.nextInt();
                                 scanner.nextLine();
-                                validInput = false;
+                                validInput = true;
                             }
                             else{
                                 System.out.println("Please enter a non-decimal number for student Id");
@@ -147,6 +156,8 @@ public class App {
 
                         Student student = new Student(studentName, studentId, studentEmail);
                         studentDirectory.addStudent(student);
+                        System.out.println("-------------------------------------");
+                        break;
 
                     case 4:
                         System.out.println("Add a student to course");
@@ -158,12 +169,32 @@ public class App {
                         //Find the selected student
                         Student selectedStudent = studentDirectory.getStudentById(studentId);
 
-                        //Find the course...TODO add course service to maintain a list of all the courses avalible for the school
+                        //Select course that you would like to add student to
+                        System.out.println("Please select a course to add the student to");
+                        courseService.listCourses();
+                        System.out.println("-------------------------------------");
+                        System.out.println("Enter course Id");
+                        courseId = scanner.nextInt();
+                        scanner.nextLine();
 
+                        //Now retrieve the course object and add the student to it
+                        course = courseService.getCourseById(courseId);
+                        course.addStudent(selectedStudent);
+                        System.out.println("-------------------------------------");
+                        break;
+                    case 5:
+                        System.out.println("View students enrolled in course");
+                        courseService.listCourses();
 
+                        //Locate the course object and print the students
+                        System.out.println("Enter the course Id for the course you want to see");
+                        courseId = scanner.nextInt();
+                        scanner.nextLine();
 
-
-
+                        course = courseService.getCourseById(courseId);
+                        course.listStudents();
+                        System.out.println("-------------------------------------");
+                        break;
                     case 0:
                         adminMenuActive = false;
                         break;

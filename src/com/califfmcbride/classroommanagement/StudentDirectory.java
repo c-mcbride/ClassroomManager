@@ -41,7 +41,7 @@ public class StudentDirectory {
 
     public void listAllStudents(){
         for(Student student : students.values()){
-            System.out.print("Student Id: " + student.getStudentId() + ", Name: " + student.getName());
+            System.out.println("Student Id: " + student.getStudentId() + ", Name: " + student.getName());
             System.out.println("-------------------------------------");
         }
     }

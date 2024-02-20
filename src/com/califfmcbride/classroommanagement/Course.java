@@ -43,4 +43,11 @@ public class Course {
     public void addAssignment(Assignment assignment){
         this.assignments.add(assignment);
     }
+
+    //Print all students enrolled in the course
+    public void listStudents(){
+        for(int i = 0; i < students.size(); i++){
+            System.out.println(students.get(i));
+        }
+    }
 }
