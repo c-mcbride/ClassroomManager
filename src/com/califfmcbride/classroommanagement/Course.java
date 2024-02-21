@@ -1,5 +1,7 @@
 package com.califfmcbride.classroommanagement;
 import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.Map;
 import java.util.List;
 
 public class Course {
@@ -7,7 +9,7 @@ public class Course {
     private String name;
     private String description;
     private Teacher teacher;
-    private List<Student> students; //A list to hold all enrolled Students
+    private Map<Integer, Student> students; //A list to hold all enrolled Students
     private List<Assignment> assignments; //A list to hold all assignments for the course
 
     public Course(int courseId, String name, String description, Teacher teacher){
@@ -15,7 +17,7 @@ public class Course {
         this.name = name;
         this.description = description;
         this.teacher = teacher;
-        this.students = new ArrayList<>();
+        this.students = new HashMap<>();
         this.assignments = new ArrayList<>();
     }
 
@@ -28,17 +30,37 @@ public class Course {
     public void setDescription(String description){ this.description = description; }
     public Teacher getTeacher(){ return teacher; }
     public void setTeacher(Teacher  teacher) { this.teacher = teacher; }
-    public List<Student> getStudents(){ return students; }
     public List<Assignment> getAssignments(){ return assignments; }
 
     //Methods
+    //Maintains a hashmap off all students who are enrolled in the course
     public void addStudent(Student student){
-        this.students.add(student);
+        if(student != null & !students.containsKey(student.getStudentId())){
+            students.put(student.getStudentId(), student);
+        }
+        else{
+            System.out.println("This student is already enrolled in the course!");
+        }
     }
 
-    public void removeStudent(Student student){
-        this.students.remove(student);
+    public void removeStudent(int studentId){
+        if(students.containsKey(studentId){
+            students.remove(studentId);
+        }
+        else{
+            System.out.println("The student is not in the course");
+        }
     }
+
+    public void listStudentsInCourse(){
+        for(Student student : students.values()){
+            System.out.println("Student Id: " + student.getStudentId());
+            System.out.println("Student Name: " + student.getName());
+            System.out.println("-------------------------------------");
+        }
+    }
+
+
 
     public void addAssignment(Assignment assignment){
         this.assignments.add(assignment);

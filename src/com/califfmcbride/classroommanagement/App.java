@@ -192,7 +192,7 @@ public class App {
                         scanner.nextLine();
 
                         course = courseService.getCourseById(courseId);
-                        course.listStudents();
+                        course.listStudentsInCourse();
                         System.out.println("-------------------------------------");
                         break;
                     case 0:
