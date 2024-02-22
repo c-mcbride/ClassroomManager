@@ -44,7 +44,7 @@ public class Course {
     }
 
     public void removeStudent(int studentId){
-        if(students.containsKey(studentId){
+        if(students.containsKey(studentId)){
             students.remove(studentId);
         }
         else{

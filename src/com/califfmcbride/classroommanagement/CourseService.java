@@ -41,7 +41,8 @@ public class CourseService {
 
     public void listCourses(){
         for(Course course : courses.values()){
-            System.out.println("Couse ID: " + course.getCourseId() + "Course Name: " + course.getName());
+            System.out.println("Couse ID: " + course.getCourseId());
+            System.out.println("Course Name: " + course.getName());
             System.out.println("-------------------------------------");
         }
     }

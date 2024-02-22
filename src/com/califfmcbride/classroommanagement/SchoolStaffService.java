@@ -82,7 +82,8 @@ public class SchoolStaffService {
     public void listAllAdmin() {
         for (Admin admin : admins.values()) {
             // Display teacher information
-            System.out.println("Admin ID: " + admin.getAdminId() + ", Name: " + admin.getName());
+            System.out.println("Admin ID: " + admin.getAdminId());
+            System.out.println("Name: " + admin.getName());
             System.out.println("-------------------------------------");
         }
     }

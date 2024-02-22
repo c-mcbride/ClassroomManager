@@ -39,7 +39,9 @@ public class Admin {
 
     public void printTeacherList(){
         for(Teacher teacher : teachers){
-            System.out.println("Teacher ID: " + teacher.getTeacherId() + ", Name: " + teacher.getName() + ", Email: " + teacher.getEmail());
+            System.out.println("Teacher ID: " + teacher.getTeacherId());
+            System.out.println("Name: " + teacher.getName());
+            System.out.println("Email: " + teacher.getEmail());
         }
     }
 
