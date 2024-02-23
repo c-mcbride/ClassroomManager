@@ -60,8 +60,6 @@ public class Course {
         }
     }
 
-
-
     public void addAssignment(Assignment assignment){
         this.assignments.add(assignment);
     }

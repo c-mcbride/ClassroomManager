@@ -43,7 +43,8 @@ public class SchoolStaffService {
     public void listAllTeachers() {
         for (Teacher teacher : teachers.values()) {
             // Display teacher information
-            System.out.println("Teacher ID: " + teacher.getTeacherId() + ", Name: " + teacher.getName());
+            System.out.println("Teacher ID: " + teacher.getTeacherId());
+            System.out.println("Name: " + teacher.getName());
             System.out.println("-------------------------------------");
         }
     }

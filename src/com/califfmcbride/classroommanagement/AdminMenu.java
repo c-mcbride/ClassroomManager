@@ -19,7 +19,7 @@ public class AdminMenu {
 
     public void displayMenu(){
         boolean adminMenuActive = true;
-        while(adminMenuActive){
+        while(adminMenuActive){                                                                                         
             System.out.println("Welcome " + admin.getName() + " what would you like to do?");
             System.out.println("1 - Add a teacher");
             System.out.println("2 - Add a course");
