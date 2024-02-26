@@ -75,7 +75,7 @@ public class App {
                 teacherMenu.displayMenu();
                 break;
 
-                case 3:
+                case 0:
                 System.out.println("-----Exit------");
                 mainMenuActive = false;
                 break;
