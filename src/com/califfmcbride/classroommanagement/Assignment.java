@@ -7,15 +7,13 @@ public class Assignment {
     private String title;
     private String description;
     private Date dueDate;
-    private Course course;
     private int assignmentId;
     private List<Submission> submissions; //List to hold all the submissions for that assignment
 
-    public Assignment(String title, String description, Date dueDate, Course course, int assignmentId){
+    public Assignment(String title, String description, Date dueDate, int assignmentId){
         this.title = title;
         this.description = description;
         this.dueDate = dueDate;
-        this.course = course;
         this.assignmentId = assignmentId;
         this.submissions = new ArrayList<>();
     }
@@ -27,8 +25,6 @@ public class Assignment {
     public void setDescription(String description){ this. description = description; }
     public Date getDueDate() { return this.dueDate; }
     public void setDueDate(Date date) { this.dueDate = date; }
-    public Course getCourse(){ return this.course; }
-    public void setCouse(Course course){ this.course = course; }
     public int getAssignmentId() { return this.assignmentId; }
     public void setAssignmentId(int assignmentId){ this.assignmentId = assignmentId; }
 

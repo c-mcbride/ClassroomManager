@@ -10,7 +10,7 @@ public class Course {
     private String description;
     private Teacher teacher;
     private Map<Integer, Student> students; //A list to hold all enrolled Students
-    private List<Assignment> assignments; //A list to hold all assignments for the course
+    private Map<Integer, Assignment> assignments; //A list to hold all assignments for the course
 
     public Course(int courseId, String name, String description, Teacher teacher){
         this.courseId = courseId;
@@ -18,7 +18,7 @@ public class Course {
         this.description = description;
         this.teacher = teacher;
         this.students = new HashMap<>();
-        this.assignments = new ArrayList<>();
+        this.assignments = new HashMap<>();
     }
 
     //Getters and setters
@@ -29,8 +29,7 @@ public class Course {
     public String getDescription(){ return description; }
     public void setDescription(String description){ this.description = description; }
     public Teacher getTeacher(){ return teacher; }
-    public void setTeacher(Teacher  teacher) { this.teacher = teacher; }
-    public List<Assignment> getAssignments(){ return assignments; }
+    public void setTeacher(Teacher teacher) { this.teacher = teacher; }
 
     //Methods
     //Maintains a hashmap off all students who are enrolled in the course
@@ -60,14 +59,30 @@ public class Course {
         }
     }
 
-    public void addAssignment(Assignment assignment){
-        this.assignments.add(assignment);
-    }
-
     //Print all students enrolled in the course
     public void listStudents(){
         for(int i = 0; i < students.size(); i++){
             System.out.println(students.get(i));
         }
     }
+
+    //Adds an assignment to the course. Utilizing a hashmap again to easily access values by id
+    public void addAssignment(Assignment assignment){
+        if(assignment != null && !assignments.containsKey(assignment.getAssignmentId())){
+            assignments.put(assignment.getAssignmentId(), assignment);
+        }
+        else{
+            System.out.println("This assignment already exists for the course");
+        }
+    }
+
+    public void listAllAssignments(){
+        for(Assignment assignment : assignments.values()){
+            System.out.println("Assignment Id: " + assignment.getAssignmentId());
+            System.out.println("ASsignment Name: " + assignment.getTitle());
+
+        }
+    }
+
+
 }
