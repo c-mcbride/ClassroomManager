@@ -65,9 +65,22 @@ public class AdminMenu {
                     break;
                 case 2:
                     System.out.println("Create a course");
-                    System.out.println("Please enter course ID");
-                    int courseId= scanner.nextInt();
-                    scanner.nextLine();
+                    validInput = false;
+                    int courseId = -1;
+
+                    //Input protection for valid input
+                    while(!validInput){
+                        System.out.println("Please enter course ID");
+                        if(scanner.hasNextInt()){
+                            courseId = scanner.nextInt();
+                            scanner.nextLine();
+                            validInput = true;
+                        }
+                        else{
+                            System.out.println("Please enter a non-decimal number for course ID ");
+                            scanner.nextLine();
+                        }
+                    }
 
                     System.out.println("Enter the course name");
                     String courseName = scanner.nextLine();
@@ -127,6 +140,7 @@ public class AdminMenu {
                     break;
 
                 case 4:
+                    //TO DO: Make sure the student exists before proceeding
                     System.out.println("Add a student to course");
                     studentDirectory.listAllStudents();
                     System.out.println("Select a student to assign (enter student ID): ");
@@ -140,25 +154,57 @@ public class AdminMenu {
                     System.out.println("Please select a course to add the student to");
                     courseService.listCourses();
                     System.out.println("-------------------------------------");
-                    System.out.println("Enter course Id");
-                    courseId = scanner.nextInt();
-                    scanner.nextLine();
 
+                    //Input protection for courseId
+                    validInput = false;
+                    courseId = -1;
+
+                    while(!validInput){
+                        System.out.println("Enter course Id: ");
+                        if(scanner.hasNextInt()){
+                           courseId = scanner.nextInt();
+
+                           if(courseService.courseExists(courseId) == true){
+                            validInput = true;
+                            scanner.nextLine();
+                           }
+                           else{
+                            System.out.println("That course does not exist. Try again");
+                            scanner.nextLine();
+                           }
+                        }
+                        else{
+                            System.out.println("Enter a non-decimal number for courseId");
+                            scanner.nextLine();
+                        }
+                    }
                     //Now retrieve the course object and add the student to it
                     //Also adds the course to the students list
                     course = courseService.getCourseById(courseId);
                     course.addStudent(selectedStudent);
-                    selectedStudent.addCourse(course); //Add the course to the students roster 
+                    selectedStudent.addCourse(course); //Add the course to the students roster
                     System.out.println("-------------------------------------");
                     break;
                 case 5:
                     System.out.println("View students enrolled in course");
                     courseService.listCourses();
 
-                    //Locate the course object and print the students
-                    System.out.println("Enter the course Id for the course you want to see");
-                    courseId = scanner.nextInt();
-                    scanner.nextLine();
+                    validInput = false;
+                    courseId = -1;
+
+                    //Input protection for the courseId
+                    while(!validInput){
+                        System.out.println("Enter the course Id for the course you want to see");
+                        if(scanner.hasNextInt()){
+                            courseId = scanner.nextInt();
+                            scanner.nextLine();
+                            validInput = true;
+                        }
+                        else{
+                            System.out.println("Enter a non-decimal number for course Id ");
+                            scanner.nextLine();
+                        }
+                    }
 
                     course = courseService.getCourseById(courseId);
                     course.listStudentsInCourse();

@@ -57,4 +57,13 @@ public class CourseService {
             return null;
         }
     }
+
+    //Used for input protection to make sure the course exists
+    public Boolean courseExists(int courseId){
+        if(courses.containsKey(courseId)){
+            return true;
+        }
+
+        return false;
+    }
 }
