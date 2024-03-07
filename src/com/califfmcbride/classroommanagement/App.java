@@ -11,6 +11,7 @@ public class App {
             System.out.println("Welcome to ClassroomManager - Please Select and Option");
             System.out.println("1 - Create an admin ");
             System.out.println("2 - Teacher Log In");
+            System.out.println("3 - Student Log In");
             System.out.println("0 - Exit");
 
             Scanner scanner = new Scanner(System.in);
@@ -75,6 +76,18 @@ public class App {
                 teacherMenu.displayMenu();
                 break;
 
+                case 3:
+                System.out.println("Student Login");
+                System.out.println("Please Enter you Student Id");
+                int studentId = scanner.nextInt();
+                scanner.nextLine();
+
+                //Get the student object from the directory and store it as an object to pass to the menu
+                Student student = studentDirectory.getStudentById(studentId);
+                StudentMenu studentMenu = new StudentMenu(student);
+                studentMenu.displayMenu();
+                break;
+                
                 case 0:
                 System.out.println("-----Exit------");
                 mainMenuActive = false;

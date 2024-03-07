@@ -19,7 +19,7 @@ public class AdminMenu {
 
     public void displayMenu(){
         boolean adminMenuActive = true;
-        while(adminMenuActive){                                                                                         
+        while(adminMenuActive){
             System.out.println("Welcome " + admin.getName() + " what would you like to do?");
             System.out.println("1 - Add a teacher");
             System.out.println("2 - Add a course");
@@ -145,8 +145,10 @@ public class AdminMenu {
                     scanner.nextLine();
 
                     //Now retrieve the course object and add the student to it
+                    //Also adds the course to the students list
                     course = courseService.getCourseById(courseId);
                     course.addStudent(selectedStudent);
+                    selectedStudent.addCourse(course); //Add the course to the students roster 
                     System.out.println("-------------------------------------");
                     break;
                 case 5:
