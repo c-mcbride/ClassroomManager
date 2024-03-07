@@ -49,6 +49,7 @@ public class TeacherMenu {
                         System.out.println(currentCourse.getName());
                         System.out.println("1 - View Student Roster");
                         System.out.println("2 - Add Assignment");
+                        System.out.println("3 - View Assignments");
                         System.out.println("0 - Exit");
 
                         int courseMenuChoice = scanner.nextInt();
@@ -76,15 +77,24 @@ public class TeacherMenu {
                                 try{
                                      date = formatter.parse(dateString);
                                 }catch(ParseException e){
-                                    System.out.println("Invalid date format.")
+                                    System.out.println("Invalid date format.");
                                 }
 
                                 System.out.println("Enter Assignment Id: ");
                                 int assignmentId = scanner.nextInt();
                                 scanner.nextLine();
 
+                                //Create the assignment object
                                 Assignment assignment = new Assignment(assignmentTitle, description,  date, assignmentId);
 
+                                //Send this object to the course object
+                                currentCourse.addAssignment(assignment);
+                                break;
+                            case 3:
+                                System.out.println("View Assignments");
+                                currentCourse.listAllAssignments();
+                                System.out.println("-------------------");
+                                break;
                             case 0:
                                 courseMenuActive = false;
                         }
